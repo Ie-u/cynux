@@ -1,4 +1,8 @@
-# Building the APK (not yet compiled by me)
+# Building the APK
+
+## Verified build
+
+The launcher was compiled successfully by GitHub Actions on 2026-10-24. The APK from that build is available in this checkout at `dist/CynuxProductionLauncher.apk` (396,609 bytes). The workflow artifact is named `cynux-apk`.
 
 The project has **no library dependencies**: only the Android SDK platform 34 and Android Gradle Plugin 8.5.2 (downloaded by Gradle).
 
