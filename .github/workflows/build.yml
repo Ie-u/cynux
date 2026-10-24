@@ -19,8 +19,13 @@ jobs:
         with:
           gradle-version: 8.7
       - name: Build release APK
-        run: gradle assembleRelease --no-daemon
+        run: |
+          f=$(find . -name settings.gradle.kts -not -path './.git/*' | head -1)
+          echo "Project settings file: $f"
+          test -n "$f" || { echo "settings.gradle.kts NOT FOUND in repo"; ls -R | head -50; exit 1; }
+          cd "$(dirname "$f")"
+          gradle assembleRelease --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: cynux-apk
-          path: app/build/outputs/apk/release/*.apk
+          path: "**/build/outputs/apk/release/*.apk"
