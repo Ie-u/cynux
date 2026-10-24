@@ -1,0 +1,8 @@
+<resources>
+    <style name="Theme.Cynux" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_forest</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+</resources>
