@@ -5,7 +5,9 @@ Legend: **[VERIFIED]** I checked it. **[SUPPLIED]** you told me; not independent
 ## What I could and could not do
 - [VERIFIED] Updated the Kotlin launcher in this checkout with the Cynux building wallpaper, branded hero, left navigation, clock/date and network header, installed-app discovery and launching, favourites, launcher-maintained recent history, recommended cards, wallpaper selection and restore, and Android settings links.
 - [VERIFIED] Added the supplied building image as a local 1600×900 JPEG (about 350 KB). The original image remains replaceable.
-- [VERIFIED] Checked the Android manifest XML and `git diff --check`. The Android application was **not compiled**: Gradle and the Android SDK are not installed in this environment. Java 25 and platform-tools are present, but no Android build platform/build-tools or Gradle command was found.
+- [VERIFIED] Checked the Android manifest XML and `git diff --check`. Local Gradle/Android SDK tools are absent, so GitHub Actions built commit `bb3f908b4312e2cf65828bcf9c6430afc94195e7`; the resulting APK is `dist/CynuxProductionLauncher.apk` (396,609 bytes).
+- [VERIFIED] Build configuration: package `tv.cynux.launcher`, min SDK 26, target SDK 34. The APK contains no native libraries, so it does not depend on a specific CPU ABI.
+- [VERIFIED] The APK has not been installed on the physical TV.
 - [VERIFIED] No commands were run against the TV. The supplied network ADB attempt previously failed, so installation and remote-control behavior remain unverified.
 - [VERIFIED] Web searches for `t950s_be30ae` and Solar Max firmware returned **no relevant results**. No manufacturer firmware, board documentation or recovery image was found. Do not assume one exists.
 
@@ -31,7 +33,7 @@ A launcher is a normal APK. Copy `app-release.apk` to a USB stick, plug it in, o
 ## What each customization needs
 | Item | Method | Needs root/unlocked bootloader? | Status |
 |---|---|---|---|
-| Branded home screen, clock, network, favourites, recents, wallpapers | `CYNUX` launcher APK | No | **Source updated; compilation and TV testing remain** |
+| Branded home screen, clock, network, favourites, recents, wallpapers | `CYNUX` launcher APK | No | **Built in CI; physical TV test remains** |
 | Default launcher | Chooser on HOME press, or ADB `set-home-activity` | No | Depends on firmware |
 | Startup transition into launcher | App's own window background (dark green, no title bar) | No | Done in theme |
 | Android boot animation (`bootanimation.zip`) | Replace file in `/system/media` (or `/oem`, `/product`) | **Yes** – write access to system partition | **Not attempted**; may not apply if the TV's logo is drawn by the vendor/TV stack |
